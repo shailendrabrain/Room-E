@@ -25,7 +25,7 @@ SECRET_KEY = '-d$3^apjw08r$t9a73iu(8dk*#jzsa(jj#@gujjwcg*8eh-cu)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # APPS
+    'corsheaders',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +51,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # ADDITIONAL MIDDLEWARE
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://0.0.0.0:8000"
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -75,8 +88,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'roome',
+        'USER': 'root',
+        'PASSWORD': '123',
+        'HOST': 'localhost'
     }
 }
 
